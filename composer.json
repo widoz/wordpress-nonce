@@ -1,0 +1,42 @@
+{
+  "name": "unprefix/nonce",
+  "description": "A OOP wrapper for WordPress Nonce",
+  "version": "1.0.0-alpha",
+  "type": "library",
+  "keywords": [
+    "wordpress",
+    "nonce"
+  ],
+  "license": "GPL+2",
+  "authors": [
+    {
+      "name": "Guido Scialfa",
+      "email": "dev@guidoscialfa.com",
+      "homepage": "https://www.guidoscialfa.com",
+      "role": "developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/widoz/unprefix-nonce/issues",
+    "source": "https://github.com/widoz/unprefix-nonce",
+    "wiki": "https://github.com/widoz/unprefix-nonce/wiki"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require-dev": {
+    "brain/monkey": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Unprefix\\Nonce\\": "src/"
+    },
+    "files": [
+      "inc/helper.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Unprefix\\Nonce\\Tests": "tests/src/"
+    }
+  }
+}
