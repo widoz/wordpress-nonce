@@ -11,7 +11,7 @@ A WordPress package that wrap the nonce logic in a OOP way.
 
 Use [composer](https://getcomposer.org/) 
 
-`composer require unprefix/template-loader`
+`composer require unprefix/nonce`
 
 # License
 
