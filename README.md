@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/widoz/unprefix-nonce.svg?branch=dev)](https://travis-ci.org/widoz/unprefix-nonce)
+
 # Unprefix Nonce
 
 A WordPress package that wrap the nonce logic in a OOP way.
