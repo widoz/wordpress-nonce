@@ -136,4 +136,21 @@ final class NonceField implements TemplateInterface
             ->setData($data)
             ->render();
     }
+
+    /**
+     * Show Field
+     *
+     * @since 1.0.0
+     *
+     * @param string $action   The action for the nonce.
+     * @param string $name     The name for the nonce.
+     * @param bool   $referrer If the referrer field must be included.
+     */
+    public static function field($action, $name, $referrer = true)
+    {
+        $nonce    = new Nonce($action);
+        $instance = new self($nonce, $name, $referrer);
+
+        $instance->tmpl($instance->data());
+    }
 }
