@@ -26,6 +26,12 @@
 
 namespace Unprefix\Nonce;
 
+/**
+ * Interface NonceInterface
+ *
+ * @package Unprefix\Nonce
+ * @author  Guido Scialfa <dev@guidoscialfa.com>
+ */
 interface NonceInterface
 {
     /**
