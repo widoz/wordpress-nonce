@@ -1,6 +1,6 @@
 <?php
 /**
- * NonceTest
+ * NonceField
  *
  * @author    Guido Scialfa <dev@guidoscialfa.com>
  * @package   nonce
@@ -24,25 +24,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-namespace Unprefix\Nonce\Tests;
+namespace Unprefix\Nonce;
 
-use Unprefix\Nonce\NonceField;
-use PHPUnit\Framework\TestCase;
+use TemplateLoader\TemplateInterface;
 
-class NonceTest extends TestCase
+/**
+ * Class NonceField
+ *
+ * @since   ${SINCE}
+ * @package Unprefix\Nonce
+ * @author  Guido Scialfa <dev@guidoscialfa.com>
+ */
+final class NonceField implements TemplateInterface
 {
-    public function testInstance()
+    private $nonce;
+
+    private $name;
+
+    private $referer;
+
+    public function __construct(NonceInterface $nonce, $name, $referer)
     {
-        $nonceMock = \Mockery::mock('Unprefix\\Nonce\\NonceInterface');
-        $nonceMock->shouldReceive('nonce')
-                  ->andReturn('aa');
+        if(!is_string($name) || '' === $name) {
+            throw new \InvalidArgumentException(
 
-        $nonce = new NonceField(
-            $nonceMock,
-            'nonce_name',
-            true
-        );
+            );
+        }
+    }
 
-        $this->assertInstanceOf('Unprefix\\Nonce\\NonceField', $nonce);
+    public function data()
+    {
+        // TODO: Implement data() method.
+    }
+
+    public function tmpl(\stdClass $data)
+    {
+        // TODO: Implement tmpl() method.
     }
 }

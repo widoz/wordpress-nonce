@@ -85,6 +85,8 @@ final class NonceUrl implements NonceUrlInterface
      *
      * @since 1.0.0
      *
+     * @throws \InvalidArgumentException If $name or $url are not valid strings.
+     *
      * @param NonceInterface $nonce The instance of the nonce for internal use.
      * @param string         $name  The nonce name.
      * @param string         $url   URL to add nonce action.
