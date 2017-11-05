@@ -92,12 +92,12 @@ class NonceUrlTest extends NonceTestCase
     public function provideDataForNameParameter()
     {
         return array(
-            array(''),
-            array(1),
-            array(false),
-            array(true),
-            array([]),
-            array(new \stdClass()),
+            [''],
+            [1],
+            [false],
+            [true],
+            [[]],
+            [new \stdClass()],
         );
     }
 
