@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/widoz/unprefix-nonce.svg?branch=dev)](https://travis-ci.org/widoz/unprefix-nonce)
+[![codecov](https://codecov.io/gh/widoz/unprefix-nonce/branch/dev/graph/badge.svg)](https://codecov.io/gh/widoz/unprefix-nonce)
+
 
 # Unprefix Nonce
 
