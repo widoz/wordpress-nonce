@@ -1,9 +1,8 @@
 <?php
 /**
- * NonceTest
+ * Nonce Test
  *
  * @author    Guido Scialfa <dev@guidoscialfa.com>
- * @package   nonce
  * @copyright Copyright (c) 2017, Guido Scialfa
  * @license   GNU General Public License, version 2
  *
@@ -26,23 +25,59 @@
 
 namespace Unprefix\Nonce\Tests;
 
-use Unprefix\Nonce\NonceField;
-use PHPUnit\Framework\TestCase;
+use Brain\Monkey\Functions;
+use Unprefix\Nonce\Nonce;
 
-class NonceTest extends TestCase
+class NonceTest extends NonceTestCase
 {
-    public function testInstance()
+    public function testNonceInstance()
     {
-        $nonceMock = \Mockery::mock('Unprefix\\Nonce\\NonceInterface');
-        $nonceMock->shouldReceive('nonce')
-                  ->andReturn('aa');
+        Functions\when('wp_create_nonce')
+            ->justReturn(true);
 
-        $nonce = new NonceField(
-            $nonceMock,
-            'nonce_name',
-            true
-        );
+        $nonce = new Nonce('action_name');
 
-        $this->assertInstanceOf('Unprefix\\Nonce\\NonceField', $nonce);
+        $this->assertInstanceOf('Unprefix\\Nonce\\Nonce', $nonce);
+    }
+
+    public function testNonceActionThrowInvalidArgumentExceptionIfActionIsntAString()
+    {
+        $this->expectException('InvalidArgumentException');
+
+        $nonce = new Nonce(['action_name']);
+    }
+
+    public function testNonceActionInvalidStringValueThrowException()
+    {
+        $this->expectException('InvalidArgumentException');
+
+        Functions\when('wp_create_nonce')
+            ->justReturn(true);
+
+        $nonce = new Nonce('');
+    }
+
+    public function testNonceAction()
+    {
+        Functions\when('wp_create_nonce')
+            ->justReturn(true);
+
+        $nonce = new Nonce('nonce_action');
+
+        $this->assertSame('nonce_action', $nonce->action());
+    }
+
+    public function testNonceValue()
+    {
+        $value = 'aa334423';
+
+        Functions\when('wp_create_nonce')
+            ->justReturn($value);
+
+        $nonce = new Nonce('nonce_action');
+
+        $response = $nonce->nonce();
+
+        $this->assertSame($value, $response);
     }
 }
