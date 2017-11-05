@@ -26,39 +26,114 @@
 
 namespace Unprefix\Nonce;
 
+use TemplateLoader\DataStorage;
+use TemplateLoader\Loader;
 use TemplateLoader\TemplateInterface;
+use function Unprefix\Nonce\Helpers\slugify;
 
 /**
  * Class NonceField
  *
- * @since   ${SINCE}
+ * @since   1.0.0
  * @package Unprefix\Nonce
  * @author  Guido Scialfa <dev@guidoscialfa.com>
  */
 final class NonceField implements TemplateInterface
 {
+    /**
+     * Nonce
+     *
+     * @since 1.0.0
+     *
+     * @var NonceInterface The instance of the nonce to use
+     */
     private $nonce;
 
+    /**
+     * Name
+     *
+     * @since 1.0.0
+     *
+     * @var string The nonce name
+     */
     private $name;
 
-    private $referer;
+    /**
+     * Referrer
+     *
+     * @since 1.0.0
+     *
+     * @var bool If referrer hidden field must be included
+     */
+    private $referrer;
 
-    public function __construct(NonceInterface $nonce, $name, $referer)
+    /**
+     * Template Path
+     *
+     * @since 1.0.0
+     *
+     * @var string The template path for the field
+     */
+    private $tmplPath;
+
+    /**
+     * NonceField constructor
+     *
+     * @since 1.0.0
+     *
+     * @throws \InvalidArgumentException When one of name or referrer is not a valid expected value
+     *
+     * @param NonceInterface $nonce    The instance of the nonce to use.
+     * @param string         $name     The nonce name.
+     * @param bool           $referrer If referrer hidden field must be included.
+     */
+    public function __construct(NonceInterface $nonce, $name, $referrer = false)
     {
-        if(!is_string($name) || '' === $name) {
+        if (! is_string($name) || '' === $name) {
             throw new \InvalidArgumentException(
-
+                'Invalid string passed to ' . __CLASS__ . ' constructor'
             );
         }
+
+        if (! is_bool($referrer)) {
+            throw new \InvalidArgumentException(
+                'Invalid referer value. The referer must be a boolean in ' . __CLASS__
+            );
+        }
+
+        $this->nonce    = $nonce;
+        $this->name     = slugify($name);
+        $this->referrer = $referrer;
+        $this->tmplPath = dirname(dirname(__FILE__));
     }
 
+    /**
+     * @inheritdoc
+     *
+     * @since 1.0.0
+     */
     public function data()
     {
-        // TODO: Implement data() method.
+        return (object)[
+            'nonce'    => $this->nonce,
+            'name'     => $this->name,
+            'referrer' => $this->referrer,
+        ];
     }
 
+    /**
+     * @inheritdoc
+     *
+     * @since 1.0.0
+     */
     public function tmpl(\stdClass $data)
     {
-        // TODO: Implement tmpl() method.
+        (new Loader(
+            $this->name . '_nonce',
+            new DataStorage(),
+            "{$this->tmplPath}/views/nonce/field.php"
+        ))
+            ->setData($data)
+            ->render();
     }
 }

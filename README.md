@@ -11,6 +11,7 @@ A WordPress package that wrap the nonce logic in a OOP way.
 - PHP 5.6+
 - WordPress 4.8+
 - [Slugify ^3.0](https://github.com/cocur/slugify)
+- [Unprefix Template Loader ^3.0](https://github.com/widoz/template-loader)
 
 # Installation
 
