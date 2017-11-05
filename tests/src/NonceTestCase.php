@@ -31,8 +31,8 @@ use \PHPUnit\Framework\TestCase;
 /**
  * Class NonceTestCase
  *
- * @since  ${SINCE}
- * @author Guido Scialfa <dev@guidoscialfa.com>
+ * @author  Guido Scialfa <dev@guidoscialfa.com>
+ * @package Unprefix\Nonce\Tests
  */
 class NonceTestCase extends TestCase
 {
