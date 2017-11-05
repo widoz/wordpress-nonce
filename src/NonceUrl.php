@@ -125,4 +125,25 @@ final class NonceUrl implements NonceUrlInterface
     {
         return esc_url($this->url);
     }
+
+    /**
+     * Create Nonce Url
+     *
+     * Helper function to create and retrieve a nonce url.
+     *
+     * @since 1.0.0
+     *
+     * @param string $action The action name of the nonce.
+     * @param string $name   The name of the nonce. The key from which retrieve the value for nonce.
+     * @param string $url    The URL to add nonce action.
+     *
+     * @return string
+     */
+    public static function create($action, $name, $url)
+    {
+        $nonce    = new Nonce($action);
+        $instance = new self($nonce, $name, $url);
+
+        return $instance->url();
+    }
 }
