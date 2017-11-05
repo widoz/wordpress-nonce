@@ -58,7 +58,7 @@ final class Nonce implements NonceInterface
      *
      * @since 1.0.0
      *
-     * @throws \InvalidArgumentException In case the $action parameter isn't a valid string.
+     * @throw \InvalidArgumentException If action isn't a valid string.
      *
      * @param string $action The nonce action that create the context.
      */
