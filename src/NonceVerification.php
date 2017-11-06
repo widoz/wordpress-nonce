@@ -39,14 +39,52 @@ use function Unprefix\Nonce\Helpers\String\slugify;
  */
 class NonceVerification
 {
+    /**
+     * Data Provider
+     *
+     * @since 1.0.0
+     *
+     * @var string The provider of the data in which search for nonce value
+     */
     private $provider;
 
+    /**
+     * Must Die
+     *
+     * @since 1.0.0
+     *
+     * @var bool True if the script must die when a nonce is invalid. False otherwise.
+     */
     private $mustDie;
 
+    /**
+     * Nonce
+     *
+     * @since 1.0.0
+     *
+     * @var NonceInterface The nonce instance to verify
+     */
     private $nonce;
 
+    /**
+     * Name
+     *
+     * @since 1.0.0
+     *
+     * @var string The nonce name to use to retrieve the nonce value from the data provider
+     */
     private $name;
 
+    /**
+     * NonceVerification constructor
+     *
+     * @since 1.0.0
+     *
+     * @param NonceInterface $nonce    The nonce instance to verify.
+     * @param string         $name     The nonce name to use to retrieve the nonce value from the data provider.
+     * @param string         $provider The provider of the data in which search for nonce value.
+     * @param bool           $mustDie  True if the script must die when a nonce is invalid. False otherwise.
+     */
     public function __construct(NonceInterface $nonce, $name = '', $provider = 'POST', $mustDie = false)
     {
         $this->nonce    = $nonce;
@@ -55,6 +93,14 @@ class NonceVerification
         $this->mustDie  = $mustDie;
     }
 
+    /**
+     * Verify
+     *
+     * @since 1.0.0
+     *
+     * @return false|int False if the nonce is invalid, 1 if the nonce is valid and generated between
+     *                   0-12 hours ago, 2 if the nonce is valid and generated between 12-24 hours ago.
+     */
     public function verify()
     {
         // Set the nonce name.
