@@ -97,9 +97,9 @@ final class Nonce implements NonceInterface
      *
      * @since 1.0.0
      *
-     * @param $action
+     * @param string $action The nonce action that create the context.
      *
-     * @return string
+     * @return string The nonce value
      */
     public static function create($action)
     {
