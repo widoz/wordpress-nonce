@@ -26,7 +26,7 @@
 
 namespace Unprefix\Nonce;
 
-use function Unprefix\Nonce\Helpers\slugify;
+use function Unprefix\Nonce\Helpers\String\slugify;
 
 /**
  * Class NonceUrl

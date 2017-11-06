@@ -29,7 +29,7 @@ namespace Unprefix\Nonce;
 use TemplateLoader\DataStorage;
 use TemplateLoader\Loader;
 use TemplateLoader\TemplateInterface;
-use function Unprefix\Nonce\Helpers\slugify;
+use function Unprefix\Nonce\Helpers\String\slugify;
 
 /**
  * Class NonceField
