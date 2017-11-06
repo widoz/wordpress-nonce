@@ -45,3 +45,52 @@ namespace Unprefix\Nonce\Helpers\String {
     }
 }
 
+namespace Unprefix\Nonce\Helpers\Request {
+
+    /**
+     * Retrieve Input Data Provider
+     *
+     * @since 1.0.0
+     *
+     * @param string $method The http method name from which retrieve the data. Allowed 'POST', 'GET', 'REQUEST'
+     *
+     * @return array The data array
+     */
+    function inputDataProvider($method)
+    {
+        // Canonicalize the input data provider name.
+        $method = strtoupper($method);
+
+        // @codingStandardsIgnoreStart
+        switch ($method) {
+            case 'GET':
+                $data = $_GET;
+                break;
+            case 'REQUEST':
+                $data = $_REQUEST;
+                break;
+            default:
+                $data = $_POST;
+                break;
+        } // @codingStandardsIgnoreEnd
+
+        return $data;
+    }
+
+    /**
+     * Filter Input
+     *
+     * @since 1.0.0
+     *
+     * @param array  $data    The data from which retrieve the value.
+     * @param string $key     The key of the data for which retrieve the value.
+     * @param int    $filter  The filter to use to retrieve the data.
+     * @param array  $options The options for filtering.
+     *
+     * @return bool|mixed The value filtered or false otherwise
+     */
+    function filterInput($data, $key, $filter = FILTER_DEFAULT, $options = array())
+    {
+        return isset($data[$key]) ? filter_var($data[$key], $filter, $options) : false;
+    }
+}
