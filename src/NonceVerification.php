@@ -138,6 +138,15 @@ class NonceVerification
         return $verified;
     }
 
+    /**
+     * Kill
+     *
+     * @since 1.0.0
+     *
+     * @uses  wp_die() To terminate the script.
+     *
+     * @return void
+     */
     private function kill()
     {
         wp_die(esc_html__('Cheatin&#8217; Uh?', 'unprefix-nonce'));
