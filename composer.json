@@ -37,7 +37,7 @@
       "Unprefix\\Nonce\\": "src/"
     },
     "files": [
-      "inc/helpers/string.php"
+      "inc/helpers.php"
     ]
   },
   "autoload-dev": {
